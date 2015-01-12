@@ -17,14 +17,27 @@ public class PictureTester
     beach.explore();
   }
   
-//   public static void testMirrorVerticalRightToLeft()
-//   {
-//     Picture caterpillar = new Picture("caterpillar.jpg");
-//     caterpillar.explore();
-//     caterpillar.mirrorVerticalRightToLeft();
-//     caterpillar.explore();
-//   }
-  
+  public static void testMirrorVerticalRightToLeft()
+  {
+    Picture caterpillar = new Picture("caterpillar.jpg");
+    caterpillar.explore();
+    caterpillar.mirrorVerticalRightToLeft();
+    caterpillar.explore();
+  }
+  public static void testMirrorHorrizontal()
+  {
+    Picture caterpillar = new Picture("caterpillar.jpg");
+    caterpillar.explore();
+    caterpillar.mirrorHorrizontal();
+    caterpillar.explore();
+  }
+  public static void testMirrorHorrizontalBotToTop()
+  {
+    Picture caterpillar = new Picture("caterpillar.jpg");
+    caterpillar.explore();
+    caterpillar.mirrorHorrizontalBotToTop();
+    caterpillar.explore();
+  }
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
