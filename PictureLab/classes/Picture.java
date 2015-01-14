@@ -70,7 +70,28 @@ public class Picture extends SimplePicture
   }
   
   ////////////////////// methods ///////////////////////////////////////
-  
+  public void cropAndCopy(Picture sourcePicture, int startSourceRow, int endSourceRow, int startSourceCol, int endSourceCol,
+         int startDestRow, int startDestCol)
+  {
+     sourcePicture = "beach.jpg";
+     Pixel[][] pixels = this.getPixels2D();
+     rowMin = startSourceRow;
+     rowMax = endSourceRow;
+     colMin = startSourceCol;
+     colMax = endSourceCol;
+     targetRow = startDestRow;
+     targetCol = startDestCol;
+      for (int row =  rowMin; row < rowMax; row++)
+     {
+         for (int col = colMin; col < colMax; col++)
+         {
+             topPixel = pixels[row][col];
+             bottomPixel = pixels[width - 1 - row][col];
+             bottomPixel.setColor(topPixel.getColor());
+         }
+
+    }
+  }
   /**
    * Method to return a string with information about this picture.
    * @return a string with information about the picture such as fileName,
@@ -84,7 +105,37 @@ public class Picture extends SimplePicture
     return output;
     
   }
-  
+  public void fixUnderWater()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+          int r = pixelObj.getRed();
+         
+          pixelObj.setGreen(r +50);
+
+      }
+    }
+  }
+  public void grayScale()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+         int r = pixelObj.getRed();
+         int g = pixelObj.getGreen();
+         int b = pixelObj.getBlue();
+         int average = (r + g + b)/ 3;
+         pixelObj.setRed(average);
+         pixelObj.setGreen(average);
+         pixelObj.setBlue(average);
+      }
+    }
+  }
   /** Method to set the blue to 0 */
   public void zeroBlue()
   {

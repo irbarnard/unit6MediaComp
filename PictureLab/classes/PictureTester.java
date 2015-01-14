@@ -9,6 +9,20 @@
 public class PictureTester
 {
   /** Method to test zeroBlue */
+  public static void testfixUnderWater()
+  {
+    Picture water = new Picture("water.jpg");
+    water.explore();
+     water.fixUnderWater();
+     water.explore();
+  }
+  public static void testGrayScale()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.grayScale();
+    beach.explore();
+  }
   public static void testZeroBlue()
   {
     Picture beach = new Picture("beach.jpg");
