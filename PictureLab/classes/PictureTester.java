@@ -9,6 +9,13 @@
 public class PictureTester
 {
   /** Method to test zeroBlue */
+  public static void cropAndCopyTest()
+  {
+      Picture sourcePicture = new Picture("beach.jpg");
+      sourcePicture.explore();
+      sourcePicture.cropAndCopy(sourcePicture, 0, 50, 0, 50, 51, 51);
+      sourcePicture.explore();
+  }
   public static void testfixUnderWater()
   {
     Picture water = new Picture("water.jpg");

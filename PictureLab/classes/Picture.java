@@ -73,23 +73,29 @@ public class Picture extends SimplePicture
   public void cropAndCopy(Picture sourcePicture, int startSourceRow, int endSourceRow, int startSourceCol, int endSourceCol,
          int startDestRow, int startDestCol)
   {
-     sourcePicture = "beach.jpg";
+     Picture pics = sourcePicture;
      Pixel[][] pixels = this.getPixels2D();
-     rowMin = startSourceRow;
-     rowMax = endSourceRow;
-     colMin = startSourceCol;
-     colMax = endSourceCol;
-     targetRow = startDestRow;
-     targetCol = startDestCol;
+     int rowMin = startSourceRow;
+     int rowMax = endSourceRow;
+     int colMin = startSourceCol;
+     int colMax = endSourceCol;
+     int targetRow = startDestRow;
+     int targetCol = startDestCol;
+     Pixel topPixel = null;
+     Pixel bottomPixel = null;
+     int width = colMax-colMin;
+     int reset = targetCol;
       for (int row =  rowMin; row < rowMax; row++)
      {
          for (int col = colMin; col < colMax; col++)
          {
              topPixel = pixels[row][col];
-             bottomPixel = pixels[width - 1 - row][col];
+             bottomPixel = pixels[targetRow][targetCol];
              bottomPixel.setColor(topPixel.getColor());
+             targetCol += 1;
          }
-
+         targetCol = reset;
+         targetRow += 1;
     }
   }
   /**
