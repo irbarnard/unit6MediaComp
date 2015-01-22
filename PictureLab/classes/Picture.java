@@ -368,7 +368,10 @@ public class Picture extends SimplePicture
   public void createCollage()
   {
     Picture swords = new Picture("swords.jpeg");
+    Picture sourcePicture = new Picture("swords.jpeg");
     swords.mirrorVertical();
+    swords.mirrorVerticalRightToLeft();
+    swords.cropAndCopy(sourcePicture, 684, 1020, 0, 1599, 10, 0);
     swords.explore();
     
     //684 rows 0 cols for start
