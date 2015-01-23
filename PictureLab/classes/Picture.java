@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.text.*;
 import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
-
+import java.util.Random;
 /**
  * A class that represents a picture.  This class inherits from 
  * SimplePicture and allows the student to add functionality to
@@ -97,6 +97,165 @@ public class Picture extends SimplePicture
          targetCol = reset;
          targetRow += 1;
     }
+  }
+  
+  public void verticalMirrorSegment(Picture sourcePicture, int startSourceRow, int endSourceRow, int startSourceCol, int endSourceCol)
+  {
+     Picture pics = sourcePicture;
+     Pixel[][] pixels = this.getPixels2D();
+     int rowMin = startSourceRow;
+     int rowMax = endSourceRow;
+     int colMin = startSourceCol;
+     int colMax = endSourceCol;
+     Pixel leftPixel = null;
+     Pixel rightPixel = null;
+     int width = colMax-colMin;
+      for (int row =  rowMin; row < rowMax; row++)
+     {
+         for (int col = colMin; col < colMax; col++)
+         {
+             leftPixel = pixels[row][col];
+             rightPixel = pixels[row][width - 1 - col];
+             rightPixel.setColor(leftPixel.getColor());
+         }
+    }
+   
+  }
+  public void horrizontalMirrorSegment(Picture sourcePicture, int startSourceRow, int endSourceRow, int startSourceCol, int endSourceCol)
+  {
+     Picture pics = sourcePicture;
+     Pixel[][] pixels = this.getPixels2D();
+     int rowMin = startSourceRow;
+     int rowMax = endSourceRow;
+     int colMin = startSourceCol;
+     int colMax = endSourceCol;
+     Pixel topPixel = null;
+     Pixel bottomPixel = null;
+     int width = colMax-colMin;
+      for (int col =  colMin; col < colMax; col++)
+     {
+         for (int row = rowMin; row < rowMax; row++)
+         {
+             topPixel = pixels[row][col];
+             bottomPixel = pixels[rowMax - 1 - row][col];
+             bottomPixel.setColor(topPixel.getColor());
+         }
+    }
+   
+  }
+  public void horrizontalBottomToTopMirrorSegment(Picture sourcePicture, int startSourceRow, int endSourceRow, int startSourceCol, int endSourceCol)
+  {
+     Picture pics = sourcePicture;
+     Pixel[][] pixels = this.getPixels2D();
+     int rowMin = startSourceRow;
+     int rowMax = endSourceRow;
+     int colMin = startSourceCol;
+     int colMax = endSourceCol;
+     Pixel topPixel = null;
+     Pixel bottomPixel = null;
+     int width = colMax-colMin;
+      for (int col =  colMin; col < colMax; col++)
+     {
+         for (int row = rowMin; row < rowMax; row++)
+         {
+             topPixel = pixels[row][col];
+             bottomPixel = pixels[rowMax - 1 - row][col];
+             topPixel.setColor(bottomPixel.getColor());
+         }
+    }
+   
+  }
+  public void randomPixels(Picture sourcePicture, int startSourceRow, int endSourceRow, int startSourceCol, int endSourceCol)
+  {
+     Picture pics = sourcePicture;
+     Pixel[][] pixels = this.getPixels2D();
+     int rowMin = startSourceRow;
+     int rowMax = endSourceRow;
+     int colMin = startSourceCol;
+     int colMax = endSourceCol;
+     Pixel currentPixel = null;
+     int width = colMax-colMin;
+      for (int col =  colMin; col < colMax; col++)
+     {
+         for (int row = rowMin; row < rowMax; row++)
+         {
+             Random rand = new Random();
+             int r = rand.nextInt(255);
+             int g = rand.nextInt(255);
+             int b = rand.nextInt(255);
+             currentPixel = pixels[row][col];
+             currentPixel.setRed(r);
+             currentPixel.setGreen(g);
+             currentPixel.setBlue(b);
+         }
+    }
+   
+  }
+  public void bloodRed(Picture sourcePicture, int startSourceRow, int endSourceRow, int startSourceCol, int endSourceCol)
+  {
+     Picture pics = sourcePicture;
+     Pixel[][] pixels = this.getPixels2D();
+     int rowMin = startSourceRow;
+     int rowMax = endSourceRow;
+     int colMin = startSourceCol;
+     int colMax = endSourceCol;
+     Pixel currentPixel = null;
+     int width = colMax-colMin;
+      for (int col =  colMin; col < colMax; col++)
+     {
+         for (int row = rowMin; row < rowMax; row++)
+         {
+             currentPixel = pixels[row][col];
+             currentPixel.setRed(255);
+
+         }
+    }
+   
+  }
+  public void coolBlue(Picture sourcePicture, int startSourceRow, int endSourceRow, int startSourceCol, int endSourceCol)
+  {
+     Picture pics = sourcePicture;
+     Pixel[][] pixels = this.getPixels2D();
+     int rowMin = startSourceRow;
+     int rowMax = endSourceRow;
+     int colMin = startSourceCol;
+     int colMax = endSourceCol;
+     Pixel currentPixel = null;
+     int width = colMax-colMin;
+      for (int col =  colMin; col < colMax; col++)
+     {
+         for (int row = rowMin; row < rowMax; row++)
+         {
+             currentPixel = pixels[row][col];
+             currentPixel.setBlue(255);
+
+         }
+    }
+   
+  }
+  public void linkGreen(Picture sourcePicture, int startSourceRow, int endSourceRow, int startSourceCol, int endSourceCol)
+  {
+     Picture pics = sourcePicture;
+     Pixel[][] pixels = this.getPixels2D();
+     int rowMin = startSourceRow;
+     int rowMax = endSourceRow;
+     int colMin = startSourceCol;
+     int colMax = endSourceCol;
+     Pixel currentPixel = null;
+     int width = colMax-colMin;
+      for (int col =  colMin; col < colMax; col++)
+     {
+         for (int row = rowMin; row < rowMax; row++)
+         {
+             currentPixel = pixels[row][col];
+             int r = currentPixel.getRed();
+             int b = currentPixel.getBlue();
+             currentPixel.setGreen(255);
+             currentPixel.setRed(r/2);
+             currentPixel.setBlue(b * 2);
+         }
+    }
+   
   }
   /**
    * Method to return a string with information about this picture.
@@ -363,17 +522,59 @@ public class Picture extends SimplePicture
       }
     }   
   }
-
+  public void copyAndPaste(Picture sourcePicture, Picture replacement, int startSourceRow, int endSourceRow, int startSourceCol, int endSourceCol,
+         int startDestRow, int startDestCol)
+  {
+     Picture target = sourcePicture;
+     Pixel[][] targetPixels = this.getPixels2D();
+     Picture pics = replacement;
+     Pixel[][] pixels = this.getPixels2D();
+     int rowMin = startSourceRow;
+     int rowMax = endSourceRow;
+     int colMin = startSourceCol;
+     int colMax = endSourceCol;
+     int targetRow = startDestRow;
+     int targetCol = startDestCol;
+     Pixel startPixel = null;
+     Pixel endPixel = null;
+     int width = colMax-colMin;
+     int reset = targetCol;
+     
+      for (int row =  rowMin; row < rowMax; row++)
+     {
+         for (int col = colMin; col < colMax; col++)
+         {
+             startPixel = pixels[row][col];
+             endPixel = targetPixels[targetRow][targetCol];
+             endPixel.setColor(startPixel.getColor());
+             targetCol += 1;
+         }
+         targetCol = reset;
+         targetRow += 1;
+    }
+  }
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture swords = new Picture("swords.jpeg");
+    Picture finalPic = new Picture("swords.jpeg");
     Picture sourcePicture = new Picture("swords.jpeg");
-    swords.mirrorVertical();
-    swords.mirrorVerticalRightToLeft();
-    swords.cropAndCopy(sourcePicture, 684, 1020, 0, 1599, 10, 0);
-    swords.explore();
-    
+    Picture replacement = new Picture("nujabesTribute.jpg");
+    finalPic.mirrorVertical();
+    finalPic.cropAndCopy(sourcePicture, 684, 1020, 0, 1599, 0, 0);
+    finalPic.mirrorVerticalRightToLeft();
+    finalPic.verticalMirrorSegment(sourcePicture, 0, (1020-684), 0, 1599);
+    finalPic.horrizontalBottomToTopMirrorSegment(sourcePicture, 0, 336, 0, 1599);
+    finalPic.randomPixels(sourcePicture,336, 684 ,0, 1599);
+    finalPic.horrizontalMirrorSegment(sourcePicture, 684, 1020, 0, 1599);
+    finalPic.horrizontalMirrorSegment(sourcePicture, 0, 336, 0, 1599);
+    finalPic.copyAndPaste(sourcePicture, replacement, 0, 474, 0, 750, 135, 562);
+    finalPic.bloodRed(sourcePicture, 0, 336, 0, 1599 );
+    finalPic.bloodRed(sourcePicture, 336, 471, 561, 1311 );
+    finalPic.coolBlue(sourcePicture, 471, 605, 1124, 1311 );
+    finalPic.coolBlue(sourcePicture,  684, 1020, 0, 1599);
+    finalPic.linkGreen(sourcePicture,  270, 470, 1124, 1311);
+    finalPic.explore();
+    finalPic.write("MyCollage.jpg");
     //684 rows 0 cols for start
   }
   

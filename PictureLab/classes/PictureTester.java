@@ -108,7 +108,6 @@ public class PictureTester
   {
     Picture canvas = new Picture("640x480.jpg");
     canvas.createCollage();
-    
   }
   
   /** Method to test edgeDetection */
